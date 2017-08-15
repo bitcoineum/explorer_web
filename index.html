@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>BTE挖矿查询</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+    <script type="text/javascript" src="js/web3.js"></script>
+    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+    .tscc {
+        padding: 19px 46px 20px 46px;
+        font-size: 18px;
+        line-height: 1.3333333;
+        border-radius: 8px;
+        background-color: #ff6c00;
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+
+    .form-control2 {
+        height: 50px;
+    }
+
+    .intro-message {
+        padding-top: 6%;
+    }
+
+    .intro-header {
+        color: #fff;
+    }
+
+    table {
+        color: #333;
+        text-align: left;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="intro-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- /input-group -->
+                    <div class="intro-message">
+                        <h1>BTE查询</h1>
+                        <h4>鲨鱼矿池1号池+2号池BTE+SharkPool2.0挖矿查询</h4>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Address</span>
+                            <input type="text" class="form-control" id="address" value="" placeholder="输入你的钱包地址" aria-describedby="basic-addon1" />
+                            <span class="input-group-btn">
+                        <input class="btn btn-lg tscc" type='button' value='查询' onclick="fun()" />
+                        </span>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">全部BTE</span>
+                            <input type="text" class="form-control2" id="bte" value="" placeholder="还未领取的BTE数量  矿池1 + 矿池2 + Shark Pool 2.0" aria-describedby="basic-addon1" />
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">全部ETH</span>
+                            <input type="text" class="form-control2" id="test2" value="" placeholder="投入挖矿的ETH总数" aria-describedby="basic-addon1" />
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">剩余ETH</span>
+                            <input type="text" class="form-control2" id="test3" value="" placeholder="还未燃尽的ETH数量" aria-describedby="basic-addon1" />
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">挖矿成本</span>
+                            <input type="text" class="form-control2" id="cost" value="" placeholder="地址挖矿成本" aria-describedby="basic-addon1" />
+                        </div>
+                        <div class="alert alert-danger" role="alert">感谢源码贡献： @大乌贼 ("\(●-●)/") </p>做了一点微小的工作 <a href="http://weibo.com/ai2401">Orange</a> 界面优化：<a href="http://t.xiaomiquan.com/IqbQb6M">ETHTE</a>
+                        </div>
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">矿池情况</div>
+                            <!-- Table -->
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>矿池编号</th>
+                                        <th>剩余ETH</th>
+                                        <th>数量占比</th>
+                                        <th>剩余位置</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>@</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>@</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td>@</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">其他链接</div>
+                            <!-- List group -->
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="http://www.bitcoineum.com/">官网</a></li>
+                                <li class="list-group-item"><a href="https://etherscan.io/token/0x73dd069c299a5d691e9836243bcaec9c8c1d8734#balances">持有人排行</a></li>
+                                <li class="list-group-item"><a href="https://etherscan.io/address/0x29aa20fb9b23421e310bdb8a7cfb81d7fbb4a1b3">鲨鱼矿池1号查看</a></li>
+                                <li class="list-group-item"><a href="https://etherscan.io/address/0x4c13184721de2d1b47a8875775ba3ce0b2e00ee0">鲨鱼矿池2号查看</a></li>
+                                <li class="list-group-item"><a href="https://etherscan.io/address/0x2918daf5b7c6cd43e3c9fce08b3bde11b09a15b5">Shark Pool 2.0</a></li>
+                            </ul>
+                        </div>
+                        <div class="coinmarketcap-currency-widget" data-currency="ethereum" data-base="CNY" data-secondary="BTC" data-ticker="false" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="true"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+var Web3 = require("web3");
+var web3 = new Web3();
+web3.setProvider(new Web3.providers.HttpProvider("https://web3.token.im"));
+var abi = [{
+    constant: !0,
+    inputs: [],
+    name: "current_external_block",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "claimed_blocks",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "calculate_minimum_contribution",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "pool_name",
+    outputs: [{
+        name: "",
+        type: "string"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    name: "attempts",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "available_slots",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "divisible_units",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [{
+        name: "_owner",
+        type: "address"
+    }],
+    name: "balanceOf",
+    outputs: [{
+        name: "balance",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [{
+        name: "_blockNum",
+        type: "uint256"
+    }, {
+        name: "_sender",
+        type: "address"
+    }],
+    name: "checkMiningAttempt",
+    outputs: [{
+        name: "",
+        type: "bool"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "owner",
+    outputs: [{
+        name: "",
+        type: "address"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !1,
+    inputs: [],
+    name: "mine",
+    outputs: [],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [{
+        name: "_who",
+        type: "address"
+    }],
+    name: "find_contribution",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }, {
+        name: "",
+        type: "uint256"
+    }, {
+        name: "",
+        type: "uint256"
+    }, {
+        name: "",
+        type: "uint256"
+    }, {
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [{
+        name: "",
+        type: "address"
+    }],
+    name: "users",
+    outputs: [{
+        name: "start_block",
+        type: "uint256"
+    }, {
+        name: "end_block",
+        type: "uint256"
+    }, {
+        name: "proportional_contribution",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "blockCreationRate",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "mined_blocks",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "max_users",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "get_bitcoineum_contract_address",
+    outputs: [{
+        name: "",
+        type: "address"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !1,
+    inputs: [],
+    name: "redeem",
+    outputs: [],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "contract_period",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [{
+        name: "_blockNum",
+        type: "uint256"
+    }],
+    name: "checkWinning",
+    outputs: [{
+        name: "",
+        type: "bool"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !1,
+    inputs: [{
+        name: "_blockNumber",
+        type: "uint256"
+    }, {
+        name: "forCreditTo",
+        type: "address"
+    }],
+    name: "claim",
+    outputs: [{
+        name: "",
+        type: "bool"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "pool_percentage",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !1,
+    inputs: [{
+        name: "_percentage",
+        type: "uint8"
+    }],
+    name: "set_pool_percentage",
+    outputs: [],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [],
+    name: "total_users",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    name: "active_users",
+    outputs: [{
+        name: "",
+        type: "address"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !1,
+    inputs: [{
+        name: "newOwner",
+        type: "address"
+    }],
+    name: "transferOwnership",
+    outputs: [],
+    payable: !1,
+    type: "function"
+}, {
+    constant: !0,
+    inputs: [{
+        name: "_externalBlockNum",
+        type: "uint256"
+    }],
+    name: "external_to_internal_block_number",
+    outputs: [{
+        name: "",
+        type: "uint256"
+    }],
+    payable: !1,
+    type: "function"
+}, {
+    inputs: [],
+    payable: !1,
+    type: "constructor"
+}, {
+    payable: !0,
+    type: "fallback"
+}, {
+    anonymous: !1,
+    inputs: [{
+        indexed: !1,
+        name: "_info",
+        type: "uint256"
+    }],
+    name: "LogEvent",
+    type: "event"
+}];
+var poolAddress1 = "0x29aa20fb9b23421e310bdb8a7cfb81d7fbb4a1b3";
+var poolAddress2 = "0x4c13184721de2d1b47a8875775ba3ce0b2e00ee0";
+var poolAddress3 = "0x2918daf5b7c6cd43e3c9fce08b3bde11b09a15b5";
+var metacoin0 = web3.eth.contract(abi).at(poolAddress1);
+var metacoin1 = web3.eth.contract(abi).at(poolAddress2);
+var metacoin2 = web3.eth.contract(abi).at(poolAddress3);
+var poolETH1 = web3.eth.getBalance(poolAddress1) / 1000000000000000000;
+var poolETH2 = web3.eth.getBalance(poolAddress2) / 1000000000000000000;
+var poolETH3 = web3.eth.getBalance(poolAddress3) / 1000000000000000000;
+var sumPoolETH = poolETH1 + poolETH2 + poolETH3;
+
+
+$(".alert-danger").append("<p>自2017年7月19日至今已经燃烧了" + (web3.eth.getBalance("0xdeaddeaddeaddeaddeaddeaddeaddeaddeaddead") / 1000000000000000000).toFixed(0) + "ETH</p>");
+
+$("table tr").eq(1).find("td").eq(0).addClass('red').html(poolETH1.toFixed(2).toString());
+$("table tr").eq(2).find("td").eq(0).addClass('red').html(poolETH2.toFixed(2).toString());
+$("table tr").eq(3).find("td").eq(0).addClass('red').html(poolETH3.toFixed(2).toString());
+$("table tr").eq(1).find("td").eq(1).addClass('red').html((poolETH1 / sumPoolETH * 100).toFixed(2) + "%");
+$("table tr").eq(2).find("td").eq(1).addClass('red').html((poolETH2 / sumPoolETH * 100).toFixed(2) + "%");
+$("table tr").eq(3).find("td").eq(1).addClass('red').html((poolETH3 / sumPoolETH * 100).toFixed(2) + "%");
+$("table tr").eq(1).find("td").eq(2).addClass('red').html(metacoin0.max_users.call().toNumber() - metacoin0.total_users.call().toNumber());
+$("table tr").eq(2).find("td").eq(2).addClass('red').html(metacoin1.max_users.call().toNumber() - metacoin1.total_users.call().toNumber());
+$("table tr").eq(3).find("td").eq(2).addClass('red').html(metacoin2.max_users.call().toNumber() - metacoin2.total_users.call().toNumber());
+
+
+document.getElementById("address").value = getCookie("address");
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
+
+function fun() {
+
+    var who = document.getElementById("address").value;
+    document.cookie = "address=" + who + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+    document.getElementById("bte").value = metacoin0.balanceOf.call(who).toNumber() / 100000000 + "  +  " + metacoin1.balanceOf.call(who).toNumber() / 100000000 +  " + " + metacoin2.balanceOf.call(who).toNumber() / 100000000 ;
+
+    strs = metacoin0.find_contribution.call(who);
+    strs2 = metacoin1.find_contribution.call(who);
+    strs3 = metacoin2.find_contribution.call(who);
+    document.getElementById("test2").value = (strs[3].toNumber() + strs2[3].toNumber() + strs3[3].toNumber() ) / 1000000000000000000;
+    document.getElementById("test3").value = (strs[4].toNumber() + strs2[4].toNumber() + strs3[4].toNumber() ) / 1000000000000000000;
+    var cost = (((strs[3].toNumber() + strs2[3].toNumber() + strs3[3].toNumber() ) - (strs[4].toNumber() + strs2[4].toNumber()) + strs3[4].toNumber())) / 1000000000000000000 / ((metacoin0.balanceOf.call(who).toNumber() + metacoin1.balanceOf.call(who).toNumber()+ metacoin2.balanceOf.call(who).toNumber()) / 100000000).toFixed(4)
+
+    document.getElementById("cost").value = cost + "ETH/BTE";
+    var price = $("div.coinmarketcap-currency-widget > div > div > div > span:eq(1)").text();
+    if (price != "") {
+        price = price.substring(0, price.indexOf("CNY") - 1) * cost;
+        document.getElementById("cost").value = document.getElementById("cost").value + "     " + price.toFixed(2) + "CNY/BTE";
+    }
+}
+</script>
+
+</html>
